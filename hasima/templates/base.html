@@ -9,6 +9,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
+		<link href="{{ STATIC_URL }}css/facebook.css" type="text/css" rel="stylesheet" media="all" />
+		{% include 'django_facebook/_facebook_js.html' %}
 
 		<title>{% block head_title %}נכנסים לכנסת{% endblock %}</title>
 		{% block extra_head %}
@@ -52,12 +54,16 @@
 					<ul class="nav navbar-nav navbar-left">
 						{% if user.is_authenticated %}
 						<li>
-							<a href="">יציאה</a>
+							<a href="/accounts/logout/?next=/">יציאה</a>
 						</li>
 						{% else %}
-						<li>
-							<a href="#">כניסה</a>
-						</li>
+						<form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
+						    <input type="hidden" value="{{ request.path }}" name="next" />
+						    <input type="hidden" value="{{ request.path }}" name="register_next" />
+						    <input type="hidden" value="{{ request.path }}" name="error_next" />
+						    {% csrf_token %}
+						    <input onclick="F.connect(this.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png" />
+						</form>
 						{% endif %}
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
