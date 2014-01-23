@@ -1,4 +1,10 @@
 *.log
 *.pot
 *.pyc
+manage.py
 local_settings.py
+.DS_Store
+.project
+.pydevproject
+sqlite.db
+hasima/settings.py
