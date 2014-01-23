@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block extra_body %}
+<div class="container">
+	<div class="row">
+
+		{% for party in party_list %}
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<img class="img-responsive" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbD6gFJh0uA2NBjFQfdl0n-4OgjlYIzr4ld7RWJbpgAKASvEub" alt="{{party.tla}}">
+				<div class="caption">
+					<h3>{{party.tla}}</h3>
+					<p>
+						{{party.name}}
+					</p>
+					<p>
+						<a href="" class="btn btn-primary" role="button" style="background: #4c66a4;border:1px solid #334A81;">התחייב!</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		{% empty %}
+		<h1>No profiles yet.</h1>
+		{% endfor %}
+
+	</div>
+</div>
+
+{% endblock %}
